@@ -5,11 +5,12 @@ interface Props {
   text: string;
   color: string;
   handler?: () => void;
+  type?: 'submit' | 'button' | 'reset';
 }
 
-const Button: FunctionComponent<Props> = ({ text, handler, color }) => {
+const Button: FunctionComponent<Props> = ({ text, handler, color, type = 'button' }) => {
   return (
-    <StyledButton color={color} onClick={handler}>
+    <StyledButton type={type} color={color} onClick={handler}>
       {text}
     </StyledButton>
   );

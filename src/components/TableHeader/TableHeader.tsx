@@ -1,27 +1,23 @@
 import React, { FunctionComponent } from 'react';
 import SortIcon from 'components/SortIcon/SortIcon';
-import { HeaderGroup, ColumnInstance, TableState, Row } from 'react-table';
+import { HeaderGroup } from 'react-table';
 
 import { StyledTableHeader, HeaderWrapper } from './TableHeader.styles';
 
 interface Props {
-  headerGroups: HeaderGroup<IEmployerData>[];
-  visibleColumns: ColumnInstance<IEmployerData>[];
-  state: TableState<IEmployerData>;
-  preGlobalFilteredRows: Row<IEmployerData>[];
-  setGlobalFilter: (filterValue: any) => void;
+  headerGroups: HeaderGroup<IEmployeData>[];
   children: React.ReactNode;
 }
 const TableHeader: FunctionComponent<Props> = ({ headerGroups, children }) => {
   return (
     <StyledTableHeader>
-      {headerGroups.map((headerGroup) => (
-        <tr {...headerGroup.getHeaderGroupProps()}>
-          {headerGroup.headers.map((column) => (
-            <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+      {headerGroups.map(({ getHeaderGroupProps, headers }) => (
+        <tr {...getHeaderGroupProps()}>
+          {headers.map(({ getHeaderProps, getSortByToggleProps, render, isSorted, isSortedDesc }) => (
+            <th {...getHeaderProps(getSortByToggleProps())}>
               <HeaderWrapper>
-                {column.render('Header')}
-                <SortIcon isSorted={column.isSorted} isSortedDesc={column.isSortedDesc} />
+                {render('Header')}
+                <SortIcon isSorted={isSorted} isSortedDesc={isSortedDesc} />
               </HeaderWrapper>
             </th>
           ))}

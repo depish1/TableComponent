@@ -1,36 +1,31 @@
 import React, { FunctionComponent, useState } from 'react';
-import { useAsyncDebounce, Row } from 'react-table';
-import { StyledFilter } from './Filter.styles';
+import FormField from 'components/FormField/FormField';
+import { useAsyncDebounce } from 'react-table';
 
 interface Props {
-  preGlobalFilteredRows: Row<IEmployerData>[];
   globalFilter: any;
   setGlobalFilter: (filterValue: any) => void;
 }
 
-const Filter: FunctionComponent<Props> = ({ preGlobalFilteredRows, globalFilter, setGlobalFilter }) => {
-  const count = preGlobalFilteredRows.length;
+const Filter: FunctionComponent<Props> = ({ globalFilter, setGlobalFilter }) => {
   const [value, setValue] = useState(globalFilter);
-  const onChange = useAsyncDebounce((value2) => {
-    setGlobalFilter(value2 || undefined);
+  const onChange = useAsyncDebounce((inputValue) => {
+    setGlobalFilter(inputValue || undefined);
   }, 200);
 
   return (
-    <StyledFilter>
-      Search:{' '}
+    <FormField id="filter" label="Szukaj:" dir="row">
       <input
         value={value || ''}
         onChange={(e) => {
           setValue(e.target.value);
           onChange(e.target.value);
         }}
-        placeholder={`${count} records...`}
-        style={{
-          fontSize: '1.1rem',
-          border: '0',
-        }}
+        type="text"
+        id="filter"
+        name="filter"
       />
-    </StyledFilter>
+    </FormField>
   );
 };
 

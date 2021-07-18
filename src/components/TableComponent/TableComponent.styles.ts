@@ -8,6 +8,7 @@ export const TableContainer = styled.div`
 `;
 
 export const StyledTableComponent = styled.table`
+  margin-top: 1rem;
   width: 100%;
   border-radius: ${({ theme }) => theme.borderRadius};
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;

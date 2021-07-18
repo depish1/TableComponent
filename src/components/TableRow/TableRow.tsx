@@ -3,7 +3,7 @@ import { Row } from 'react-table';
 import { StyledTableRow, ButtonsWrapper } from './TableRow.styles';
 
 interface Props {
-  row: Row<IEmployerData>;
+  row: Row<IEmployeData>;
   children: React.ReactNode;
 }
 const TableRow: FunctionComponent<Props> = ({ row, children }) => {

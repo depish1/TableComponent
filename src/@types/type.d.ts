@@ -1,4 +1,4 @@
-interface IEmployerData {
+interface IEmployeData {
   employeId: number;
   employeFirstName: string;
   employeLastName: string;
@@ -10,4 +10,10 @@ interface IEmployerData {
 interface IColumn {
   Header: string;
   accessor: string;
+}
+
+interface IModalOptions {
+  isOpen: boolean;
+  modalType: string | null;
+  id: number | any;
 }
